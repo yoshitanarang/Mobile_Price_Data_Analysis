@@ -3,8 +3,8 @@ title: "Homework 3"
 author: "Yoshita Narang"
 date: "2022-10-13"
 output:
-  github_document: default 
   html_document: default
+  github_document: default 
   pdf_document: default
 ---
 
