@@ -1,18 +1,12 @@
----
-title: "Homework 3"
-author: "Yoshita Narang"
-date: "2022-10-13"
-output:
-  html_document: default
-  github_document: default 
-  pdf_document: default
----
+# Mobile_Price_Data_Analysis
+Homework 3
+================
+Yoshita Narang
+2022-10-13
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 # Problem 1
-```{r}
+
+``` r
 # (a) 
 # Turn the variable price_range into a factor variable with levels: “0” for low, “1” for
 # medium, “2” for high, and “3” for very high.
@@ -31,7 +25,7 @@ mobile_data$price_range <- factor(mobile_data$price_range,
                                    labels = c("Low", "Medium", "High", "Very High"))
 ```
 
-```{r}
+``` r
 # (b)
 
 # Make a scatter plot between the variables battery power vs ram
@@ -49,21 +43,35 @@ legend("topright",
        inset = c(-0.3, 0),
        legend = c("Low", "Medium", "High", "Very High"),
        fill = c(1, 2, 3, 4))
-
 ```
 
-```{r}
+![](Title_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+``` r
 # (c)
 
 # Use cor.test() function to run correlation test between variables
 cor.test(mobile_data$battery_power, mobile_data$ram) 
-
-# Pearson Value: -0.0006529264 
-# Negative value indicates a negative association between the variables 
-
 ```
 
-```{r}
+    ## 
+    ##  Pearson's product-moment correlation
+    ## 
+    ## data:  mobile_data$battery_power and mobile_data$ram
+    ## t = -0.029185, df = 1998, p-value = 0.9767
+    ## alternative hypothesis: true correlation is not equal to 0
+    ## 95 percent confidence interval:
+    ##  -0.04448259  0.04317924
+    ## sample estimates:
+    ##           cor 
+    ## -0.0006529264
+
+``` r
+# Pearson Value: -0.0006529264 
+# Negative value indicates a negative association between the variables 
+```
+
+``` r
 # (d)
 
 # Create 4 separate data sets by sub-setting
@@ -73,7 +81,7 @@ priceHigh <- subset(mobile_data, price_range == "High")
 priceVeryhigh <- subset(mobile_data, price_range == "Very High")
 ```
 
-```{r}
+``` r
 # (e)
 # Calculate the Pearson correlation coefficient between the variable pair (ram , 
 # battery power) separately for each price range. Explain any correlations you 
@@ -81,13 +89,69 @@ priceVeryhigh <- subset(mobile_data, price_range == "Very High")
 # different from the one that we found in Part c?
 
 cor.test(priceLow$battery_power, priceLow$ram) # Pearson Value: -0.3465878 
-cor.test(priceMedium$battery_power, priceMedium$ram) # Pearson Value: -0.6133971
-cor.test(priceHigh$battery_power, priceHigh$ram) # Pearson Value: -0.5874086  
-cor.test(priceVeryhigh$battery_power, priceVeryhigh$ram) # Pearson Value: -0.2627589 
-
 ```
 
-```{r}
+    ## 
+    ##  Pearson's product-moment correlation
+    ## 
+    ## data:  priceLow$battery_power and priceLow$ram
+    ## t = -8.2455, df = 498, p-value = 1.473e-15
+    ## alternative hypothesis: true correlation is not equal to 0
+    ## 95 percent confidence interval:
+    ##  -0.4214689 -0.2670123
+    ## sample estimates:
+    ##        cor 
+    ## -0.3465878
+
+``` r
+cor.test(priceMedium$battery_power, priceMedium$ram) # Pearson Value: -0.6133971
+```
+
+    ## 
+    ##  Pearson's product-moment correlation
+    ## 
+    ## data:  priceMedium$battery_power and priceMedium$ram
+    ## t = -17.332, df = 498, p-value < 2.2e-16
+    ## alternative hypothesis: true correlation is not equal to 0
+    ## 95 percent confidence interval:
+    ##  -0.6653016 -0.5555912
+    ## sample estimates:
+    ##        cor 
+    ## -0.6133971
+
+``` r
+cor.test(priceHigh$battery_power, priceHigh$ram) # Pearson Value: -0.5874086  
+```
+
+    ## 
+    ##  Pearson's product-moment correlation
+    ## 
+    ## data:  priceHigh$battery_power and priceHigh$ram
+    ## t = -16.198, df = 498, p-value < 2.2e-16
+    ## alternative hypothesis: true correlation is not equal to 0
+    ## 95 percent confidence interval:
+    ##  -0.6420282 -0.5268565
+    ## sample estimates:
+    ##        cor 
+    ## -0.5874086
+
+``` r
+cor.test(priceVeryhigh$battery_power, priceVeryhigh$ram) # Pearson Value: -0.2627589 
+```
+
+    ## 
+    ##  Pearson's product-moment correlation
+    ## 
+    ## data:  priceVeryhigh$battery_power and priceVeryhigh$ram
+    ## t = -6.0772, df = 498, p-value = 2.433e-09
+    ## alternative hypothesis: true correlation is not equal to 0
+    ## 95 percent confidence interval:
+    ##  -0.3425564 -0.1791972
+    ## sample estimates:
+    ##        cor 
+    ## -0.2627589
+
+``` r
 # (f)
 # Recreate the plot from Part b, and add the trend lines for each price range separately
 
@@ -121,9 +185,10 @@ abline(medium_trend, col = 2, xpd = FALSE)
 abline(high_trend, col = 3, xpd = FALSE)
 abline(very_high_trend, col = 4, xpd = FALSE)
 ```
-\newpage 
-Problem 2
-```{r}
+
+# Problem 2
+
+``` r
 # (a) 
 
 # Subset clock speed of mobile_data, using Boolean sequence to only display 
@@ -134,23 +199,44 @@ clock_speed <- subset(mobile_data, (mobile_data$n_cores == 4 |
                                       mobile_data$n_cores == 8))
 # Find Original Average & Median to find any changes in values 
 round(mean(mobile_data$clock_speed), digits = 2) # 1.52
-round(median(mobile_data$clock_speed), digits = 2) # 1.5
+```
 
+    ## [1] 1.52
+
+``` r
+round(median(mobile_data$clock_speed), digits = 2) # 1.5
+```
+
+    ## [1] 1.5
+
+``` r
 # Find New Average & Median
 round(mean(clock_speed$clock_speed), digits = 2) # 1.53
-round(median(clock_speed$clock_speed), digits = 2) # 1.5
+```
 
+    ## [1] 1.53
+
+``` r
+round(median(clock_speed$clock_speed), digits = 2) # 1.5
+```
+
+    ## [1] 1.5
+
+``` r
 # Since the value has increased from the original to new mean, calculate the 
 # correlation, using the cor() function, to measure the closeness of association
 cor(mobile_data$clock_speed, mobile_data$n_cores) # -0.005724226
+```
 
+    ## [1] -0.005724226
+
+``` r
 # The Correlation Value between n_cores & clock_speed is -0.005724226, hence why 
 # the new mean has increased marginally from the original, mobile_data
 # Negative correlation causes one variable to increase, while the other decreases 
-
 ```
 
-```{r}
+``` r
 # (b)
 
 # Make density curves of the RAM where the 4 price ranges are in one plot 
@@ -187,7 +273,11 @@ legend("topright",
        inset = c(-0.3, 0),
        legend = c("Low", "Medium", "High", "Very High"),
        fill = c(1, 2, 3, 4))
+```
 
+![](Title_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+``` r
 # Describe the shapes respectively
 # The desntiy curve shape of LowPriceDensity is skewed to the right, & unimodal
 # The density curve for MediumPriceDensity has a bimodal & symmetric shape  
@@ -195,7 +285,7 @@ legend("topright",
 # The shape of VeryHighPriceDensity plot if skewed to the left & unimodal 
 ```
 
-```{r}
+``` r
 # (c) 
 # Make box plots of the ram where the 4 price ranges are in one plot
 
@@ -215,8 +305,11 @@ legend("topright",
        inset = c(-0.2, 0),
        legend = c("Low", "Medium", "High", "Very High"),
        fill = c(2, 3, 4, 5))
+```
 
+![](Title_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
+``` r
 # For priceLow, the shape is skewed right, lacking outliers. 
 # For priceMedium, the boxplot has no skew, & relatively normally distributed
 # priceHigh has a plot that is relatively normally distributed with no skew
@@ -224,13 +317,29 @@ legend("topright",
 # longer part below the median
 ```
 
-```{r}
+``` r
 # (d)
 # Without using ggplot2, make a violin plot of the ram where the 4 price ranges 
 # are in one plot & describe their shapes respectively
 
 # Install Vioplot package: install.packages("vioplot")
 library(vioplot)
+```
+
+    ## Loading required package: sm
+
+    ## Package 'sm', version 2.2-5.7: type help(sm) for summary information
+
+    ## Loading required package: zoo
+
+    ## 
+    ## Attaching package: 'zoo'
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     as.Date, as.Date.numeric
+
+``` r
 par(mar = c(5, 4, 4, 8), xpd = TRUE)
 vioplot(clock_speed$ram ~ clock_speed$price_range, 
         main = "Plot of Ram Vs. Price Range",
@@ -242,13 +351,17 @@ legend("topright",
        inset = c(-0.2, 0),
        legend = c("Low", "Medium", "High", "Very High"),
        fill = c(2, 3, 4, 5))
+```
 
+![](Title_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+``` r
 # The violin plot for priceLow is skewed positively & priceMedium is relatively 
 # normally distributed. The plot for priceHigh is relatively normally 
 # distributed, while the violin plot for priceVeryhigh is skewed negatively. 
 ```
 
-```{r}
+``` r
 # (e)
 # Make a factor variable out of ram by taking the log2(ram) & rounding that value
 # to the nearest whole number. Explain why this approach makes sense
@@ -256,8 +369,17 @@ clock_ram_log <- factor(round(log2(clock_speed$ram),digits = 0))
 
 # Print the Minimum & Maximum Values
 min(log2(clock_speed$ram)) # 8.011227
-max(log2(clock_speed$ram)) # 11.96506
+```
 
+    ## [1] 8.011227
+
+``` r
+max(log2(clock_speed$ram)) # 11.96506
+```
+
+    ## [1] 11.96506
+
+``` r
 # This approach of finding the minimum & maximum values makes sense as there is 
 # a fixed set of values when taking the log2 of ram. This is because we first 
 # converted the ram values into a factor variable Thus, we are to find the 
@@ -265,7 +387,7 @@ max(log2(clock_speed$ram)) # 11.96506
 # to create graphs moving forward 
 ```
 
-```{r}
+``` r
 # (f)
 # Make a stacked bar plot to show the relation between price range & log2(ram)
 par(mar = c(5, 4, 4, 8), xpd = TRUE)
@@ -284,3 +406,5 @@ legend("topright",
        legend = c("Low", "Medium", "High", "Very High"),
        fill = c(2, 3, 4, 5))
 ```
+
+![](Title_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
