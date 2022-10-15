@@ -185,7 +185,7 @@ abline(high_trend, col = 3, xpd = FALSE)
 abline(very_high_trend, col = 4, xpd = FALSE)
 ```
 
-![](Title_files/figure-gfm/unnamed-chunk-6-1.png)<!-- --> Problem 2
+# Problem 2
 
 ``` r
 # (a) 
