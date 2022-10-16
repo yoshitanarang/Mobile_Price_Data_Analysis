@@ -1,17 +1,22 @@
 ---
-title: "Homework 3"
+title: "Mobile Price Analysis"
 author: "Yoshita Narang"
 date: "2022-10-13"
 output:
-  html_document: default
   github_document: default 
+  html_document: default
   pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-# Problem 1
+## Introduction
+This Mobile Price Classification dataset takes into account the rising competitiveness of the mobile phone market. As we know it, companies like Apple and Samsung lead the way in terms of hardware. And as someone who is a tech-enthusiast, reading on the rise of the mobile phone market in the past decade is unfathomable. Trends are constantly changing, and technology continues to advance. For that reason, I have focused on this dataset to solve the issue of ambiguity in the mobile phone market. This dataset holds sales data from various mobile phone companies. 
+
+## Data Cleaning 
+In this project, I aim to find out relations between features of a mobile phone, and using R, focus on the data visualization aspect where I can transalte information into a visual context. 
+
 ```{r}
 # (a) 
 # Turn the variable price_range into a factor variable with levels: “0” for low, “1” for
